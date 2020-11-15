@@ -17,7 +17,7 @@ def _threshold(x, threshold=None):
         return x
 
 
-def iou(pr, gt, eps=1e-7, threshold=None, ignore_channels=None, weights=None):
+def iou(pr, gt, eps=1e-7, threshold=None, ignore_channels=None, weight=None):
     """Calculate Intersection over Union between ground truth and prediction
     Args:
         pr (torch.Tensor): predicted tensor
@@ -37,17 +37,17 @@ def iou(pr, gt, eps=1e-7, threshold=None, ignore_channels=None, weights=None):
 
     score = (intersection + eps) / union
 
-    if weights is None:
+    if weight is None:
         return score
     else:
-        mean_score = torch.mean(score * weights)
+        mean_score = torch.mean(score * weight)
         return mean_score
 
 
 jaccard = iou
 
 
-def f_score(pr, gt, beta=1, eps=1e-7, threshold=None, ignore_channels=None, weights=None):
+def f_score(pr, gt, beta=1, eps=1e-7, threshold=None, ignore_channels=None, weight=None):
     """Calculate F-score between ground truth and prediction
     Args:
         pr (torch.Tensor): predicted tensor
@@ -70,10 +70,10 @@ def f_score(pr, gt, beta=1, eps=1e-7, threshold=None, ignore_channels=None, weig
     score = ((1 + beta ** 2) * tp + eps) \
             / ((1 + beta ** 2) * tp + beta ** 2 * fn + fp + eps)
 
-    if weights is None:
+    if weight is None:
         return score
     else:
-        mean_score = torch.mean(score * weights)
+        mean_score = torch.mean(score * weight)
         return mean_score
 
 
