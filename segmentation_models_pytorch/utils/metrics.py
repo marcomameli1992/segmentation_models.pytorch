@@ -21,7 +21,7 @@ class IoU(base.Metric):
             eps=self.eps,
             threshold=self.threshold,
             ignore_channels=self.ignore_channels,
-            weights=self.weight
+            weight=self.weight
         )
 
 

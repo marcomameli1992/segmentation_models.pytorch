@@ -21,7 +21,7 @@ class JaccardLoss(base.Loss):
             eps=self.eps,
             threshold=None,
             ignore_channels=self.ignore_channels,
-            weights=self.weight
+            weight=self.weight
         )
 
 
@@ -43,7 +43,7 @@ class DiceLoss(base.Loss):
             eps=self.eps,
             threshold=None,
             ignore_channels=self.ignore_channels,
-            weights=self.weight
+            weight=self.weight
         )
 
 
