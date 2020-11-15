@@ -66,7 +66,7 @@ class ResNetEncoder(ResNet, EncoderMixin):
 
     def load_state_dict(self, state_dict, **kwargs):
         state_dict.pop("fc.bias")
-        state_dict.pop("fc.weight")
+        state_dict.pop("fc.weights")
         super().load_state_dict(state_dict, **kwargs)
 
 

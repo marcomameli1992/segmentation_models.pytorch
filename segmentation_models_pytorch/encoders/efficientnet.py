@@ -78,7 +78,7 @@ class EfficientNetEncoder(EfficientNet, EncoderMixin):
 
     def load_state_dict(self, state_dict, **kwargs):
         state_dict.pop("_fc.bias")
-        state_dict.pop("_fc.weight")
+        state_dict.pop("_fc.weights")
         super().load_state_dict(state_dict, **kwargs)
 
 

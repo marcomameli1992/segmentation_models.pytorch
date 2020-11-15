@@ -6,13 +6,13 @@ from .base import Activation
 class IoU(base.Metric):
     __name__ = 'iou_score'
 
-    def __init__(self, eps=1e-7, threshold=0.5, activation=None, ignore_channels=None, weight=None, **kwargs):
+    def __init__(self, eps=1e-7, threshold=0.5, activation=None, ignore_channels=None, weights=None, **kwargs):
         super().__init__(**kwargs)
         self.eps = eps
         self.threshold = threshold
         self.activation = Activation(activation)
         self.ignore_channels = ignore_channels
-        self.weight = weight
+        self.weight = weights
 
     def forward(self, y_pr, y_gt):
         y_pr = self.activation(y_pr)

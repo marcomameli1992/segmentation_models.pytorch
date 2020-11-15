@@ -60,7 +60,7 @@ class MobileNetV2Encoder(torchvision.models.MobileNetV2, EncoderMixin):
 
     def load_state_dict(self, state_dict, **kwargs):
         state_dict.pop("classifier.1.bias")
-        state_dict.pop("classifier.1.weight")
+        state_dict.pop("classifier.1.weights")
         super().load_state_dict(state_dict, **kwargs)
 
 

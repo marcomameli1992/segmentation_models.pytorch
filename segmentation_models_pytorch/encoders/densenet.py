@@ -86,7 +86,7 @@ class DenseNetEncoder(DenseNet, EncoderMixin):
 
     def load_state_dict(self, state_dict):
         pattern = re.compile(
-            r"^(.*denselayer\d+\.(?:norm|relu|conv))\.((?:[12])\.(?:weight|bias|running_mean|running_var))$"
+            r"^(.*denselayer\d+\.(?:norm|relu|conv))\.((?:[12])\.(?:weights|bias|running_mean|running_var))$"
         )
         for key in list(state_dict.keys()):
             res = pattern.match(key)
@@ -97,7 +97,7 @@ class DenseNetEncoder(DenseNet, EncoderMixin):
 
         # remove linear
         state_dict.pop("classifier.bias")
-        state_dict.pop("classifier.weight")
+        state_dict.pop("classifier.weights")
 
         super().load_state_dict(state_dict)
 

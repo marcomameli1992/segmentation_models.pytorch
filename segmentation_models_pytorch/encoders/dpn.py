@@ -69,7 +69,7 @@ class DPNEncorder(DPN, EncoderMixin):
 
     def load_state_dict(self, state_dict, **kwargs):
         state_dict.pop("last_linear.bias")
-        state_dict.pop("last_linear.weight")
+        state_dict.pop("last_linear.weights")
         super().load_state_dict(state_dict, **kwargs)
 
 
