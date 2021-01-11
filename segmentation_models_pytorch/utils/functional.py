@@ -33,7 +33,13 @@ def iou(pr, gt, eps=1e-7, threshold=None, ignore_channels=None):
 
     intersection = torch.sum(gt * pr)
     union = torch.sum(gt) + torch.sum(pr) - intersection + eps
-    return (intersection + eps) / union
+    score = (intersection + eps) / union
+
+    if weight is None:
+        return score
+    else:
+        mean_score = torch.mean(score * weight)
+        return mean_score
 
 
 jaccard = iou
@@ -61,7 +67,11 @@ def f_score(pr, gt, beta=1, eps=1e-7, threshold=None, ignore_channels=None):
     score = ((1 + beta ** 2) * tp + eps) \
             / ((1 + beta ** 2) * tp + beta ** 2 * fn + fp + eps)
 
-    return score
+    if weight is None:
+        return score
+    else:
+        mean_score = torch.mean(score * weight)
+        return mean_score
 
 
 def accuracy(pr, gt, threshold=0.5, ignore_channels=None):
