@@ -17,7 +17,7 @@ def _threshold(x, threshold=None):
         return x
 
 
-def iou(pr, gt, eps=1e-7, threshold=None, ignore_channels=None):
+def iou(pr, gt, eps=1e-7, threshold=None, ignore_channels=None, weight=None):
     """Calculate Intersection over Union between ground truth and prediction
     Args:
         pr (torch.Tensor): predicted tensor
@@ -45,7 +45,7 @@ def iou(pr, gt, eps=1e-7, threshold=None, ignore_channels=None):
 jaccard = iou
 
 
-def f_score(pr, gt, beta=1, eps=1e-7, threshold=None, ignore_channels=None):
+def f_score(pr, gt, beta=1, eps=1e-7, threshold=None, ignore_channels=None, weight=None):
     """Calculate F-score between ground truth and prediction
     Args:
         pr (torch.Tensor): predicted tensor
