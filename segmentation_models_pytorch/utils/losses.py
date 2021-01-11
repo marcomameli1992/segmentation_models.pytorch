@@ -2,17 +2,16 @@ import torch.nn as nn
 
 from . import base
 from . import functional as F
-from  .base import Activation
+from ..base.modules import Activation
 
 
 class JaccardLoss(base.Loss):
 
-    def __init__(self, eps=1., activation=None, ignore_channels=None, weight=None, **kwargs):
+    def __init__(self, eps=1., activation=None, ignore_channels=None, **kwargs):
         super().__init__(**kwargs)
         self.eps = eps
         self.activation = Activation(activation)
         self.ignore_channels = ignore_channels
-        self.weight = weight
 
     def forward(self, y_pr, y_gt):
         y_pr = self.activation(y_pr)
@@ -21,19 +20,17 @@ class JaccardLoss(base.Loss):
             eps=self.eps,
             threshold=None,
             ignore_channels=self.ignore_channels,
-            weight=self.weight
         )
 
 
 class DiceLoss(base.Loss):
 
-    def __init__(self, eps=1., beta=1., activation=None, ignore_channels=None, weight=None, **kwargs):
+    def __init__(self, eps=1., beta=1., activation=None, ignore_channels=None, **kwargs):
         super().__init__(**kwargs)
         self.eps = eps
         self.beta = beta
         self.activation = Activation(activation)
         self.ignore_channels = ignore_channels
-        self.weight = weight
 
     def forward(self, y_pr, y_gt):
         y_pr = self.activation(y_pr)
@@ -43,7 +40,6 @@ class DiceLoss(base.Loss):
             eps=self.eps,
             threshold=None,
             ignore_channels=self.ignore_channels,
-            weight=self.weight
         )
 
 
